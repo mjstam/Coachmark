@@ -3,8 +3,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/basic_label"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="10pt"
+        android:text="@string/basic_orientation" />
 
     <Button
+        android:layout_below="@id/basic_label"
+        android:layout_marginTop="200px"
         android:id="@+id/reset_coachmarks"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

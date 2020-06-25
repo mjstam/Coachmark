@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Coachmark - Sample App</string>
 
+    <string name="basic_orientation" >Basic Orientation ( dismiss on touch enabled )</string>
+
     <string name="north" >North</string>
     <string name="northeast" >North East</string>
     <string name="east" >East</string>
