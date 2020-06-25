@@ -13,5 +13,8 @@
     <string name="northwest" >North West</string>
 
     <string name="reset_coachmarks" >Reset Coachmarks</string>
+    <string name="microadjust" >microAdjustX and microAdjustY used to refine position</string>
+    <string name="microadjust_button" >Cool New Feature</string>
+    <string name="microadjust_coachmark" >Check it out</string>
 
 </resources>

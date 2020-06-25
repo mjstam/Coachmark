@@ -24,4 +24,25 @@
         android:layout_centerInParent="true"
         android:text="@string/reset_coachmarks" />
 
+    <TextView
+        android:id="@+id/microadjust_label"
+        android:layout_marginTop="300dp"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@id/basic_label"
+        android:layout_alignParentLeft="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="10pt"
+        android:text="@string/microadjust" />
+
+    <Button
+        android:layout_below="@id/microadjust_label"
+        android:layout_marginTop="200px"
+        android:id="@+id/microadjust_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="@string/microadjust_button" />
+
 </RelativeLayout>
