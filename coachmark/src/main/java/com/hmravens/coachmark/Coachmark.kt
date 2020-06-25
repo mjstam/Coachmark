@@ -3,8 +3,10 @@ package com.hmravens.coachmark
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
+import android.util.TypedValue
 import android.view.SurfaceView
 import android.view.View
+import android.view.View.OnClickListener
 import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.core.content.ContextCompat
@@ -30,7 +32,7 @@ class Coachmark : SurfaceView {
         ContextCompat.getColor(context, R.color.coachmark_default_background)
     internal var borderColorCM: Int =
         ContextCompat.getColor(context, R.color.coachmark_default_border)
-    internal var textSize: Float = 20F
+    internal var textSize: Float = 10F
     internal var borderSize: Float = 3F
     internal var radiusSize: Float = 15F
 
@@ -69,6 +71,7 @@ class Coachmark : SurfaceView {
      * Associate the coachmark with a specific view
      */
     fun associate(association: View) {
+
 
         var viewGroup: ViewGroup? = null
         var parent = association.parent
@@ -132,15 +135,28 @@ class Coachmark : SurfaceView {
                 longestValue = lineOfText;
             }
         }
-        getPaintForText().getTextBounds(longestValue, 0, longestValue.length, rectText)
-        val fm: Paint.FontMetrics = getPaintForText().fontMetrics
+        val textPaint = getPaintForText();
+
+
+        textPaint.getTextBounds(longestValue, 0, longestValue.length, rectText)
+        val fm: Paint.FontMetrics = textPaint.fontMetrics
         val height = (fm.descent - fm.ascent) + ( (CONST_EXTRALINE_SPACING * valueList.size) - CONST_EXTRALINE_SPACING )
         val width = rectText.width()
 
-        // Size of control
-        val xIncrease = width * 1.50F
-        var yIncrease = height * 2.0F
+        val xIncrease = TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_DIP,
+            width.toFloat(),
+            context.resources.displayMetrics
+        )
 
+
+        // Size of control
+
+        var yIncrease =  TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_DIP,
+            height,
+            context.resources.displayMetrics
+        )
 
         yIncrease = yIncrease  * valueList.size
         val lp: ViewGroup.LayoutParams =
@@ -236,7 +252,13 @@ class Coachmark : SurfaceView {
         paint.color = textColorCM
         paint.isAntiAlias = true
         paint.strokeWidth = 2f
-        paint.textSize = textSize
+        val scaledSizeInPixels = TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_DIP,
+            textSize,
+            context.resources.displayMetrics
+        )
+
+        paint.textSize = scaledSizeInPixels
         paint.style = Paint.Style.FILL_AND_STROKE
         paint.strokeJoin = Paint.Join.ROUND
 
@@ -438,7 +460,7 @@ class Coachmark : SurfaceView {
                     width  ,
                     0F  ,
                     width - (endOffset + 1)  ,
-                    topOffset + 16F  ,
+                    topOffset + radiusSize + 1  ,
                     getBorderPaint()
                 )
                 canvas.drawLine(

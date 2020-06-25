@@ -1,29 +1,35 @@
 package com.hmravens.coachmarkapp
 
-import android.content.Context
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
-import android.util.AttributeSet
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.hmravens.coachmark.Coachmark
 import com.hmravens.coachmark.CoachmarkFactory
 import com.hmravens.coachmark.EnumOrientation
 import com.hmravens.common.needs.sample.R
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.view.*
+import kotlinx.android.synthetic.main.activity_main.view.tab_control
+
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
+        var oritentationFrag: OrientationFragment = OrientationFragment()
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.add(R.id.fragment_holder, oritentationFrag )
+        transaction.commit()
+
+        tab_control.getTabAt(0)!!.select()
+
+
     }
 
-
-    override fun onCreateView(name: String, context: Context, attrs: AttributeSet): View? {
-        return super.onCreateView(name, context, attrs)
-
-    }
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {
 
