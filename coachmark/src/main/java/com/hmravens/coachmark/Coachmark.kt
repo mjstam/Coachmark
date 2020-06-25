@@ -14,8 +14,13 @@ import com.hmravens.common.needs.R
 /**
  * This is the surface view for rendering the coach mark.
  */
-class CoachMark : SurfaceView {
+class Coachmark : SurfaceView {
     val CONST_EXTRALINE_SPACING = 10;
+
+    var callbacks: MutableList<CoachmarkOnClickCallback> =  mutableListOf<CoachmarkOnClickCallback>()
+
+    // These values are assigned by the Coachmark Factory and are not
+    // assignable directly from the Coachmark class.
     internal var tagId = ""
     internal var dismissOnTouch = true;
 
@@ -58,6 +63,8 @@ class CoachMark : SurfaceView {
 
     }
 
+
+
     /**
      * Associate the coachmark with a specific view
      */
@@ -78,10 +85,27 @@ class CoachMark : SurfaceView {
         this.visibility = GONE
 
         if ( dismissOnTouch ) {
-            this.setOnClickListener(OnClickListener { this.visibility = View.GONE })
+            this.setOnClickListener(OnClickListener { handleOnClickRequests() })
         }
 
     }
+
+    fun addCallback( callback: CoachmarkOnClickCallback ) {
+        callbacks.add( callback )
+    }
+
+    fun handleOnClickRequests() {
+
+        for( callback in callbacks ) {
+            callback.coachmarkClicked( tagId )
+        }
+
+        if ( dismissOnTouch ) {
+            this.visibility = GONE
+        }
+
+    }
+
 
     fun display() {
         this.bringToFront()
@@ -560,8 +584,6 @@ class CoachMark : SurfaceView {
         }
 
     }
-
-
 
 
 }

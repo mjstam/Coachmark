@@ -3,12 +3,10 @@ package com.hmravens.coachmark
 import android.content.Context
 import android.graphics.Typeface
 import androidx.core.content.ContextCompat
-import com.hmravens.coachmark.CoachMark
-import com.hmravens.coachmark.EnumOrientation
 import com.hmravens.common.needs.R
 
 
-public class CoachMarkFactory(context: Context) {
+public class CoachmarkFactory(context: Context) {
     val contextInUse: Context
 
 
@@ -36,8 +34,8 @@ public class CoachMarkFactory(context: Context) {
     }
 
 
-    fun create(tagId: String, text: String): CoachMark {
-        var coachmark = CoachMark(contextInUse)
+    fun create(tagId: String, text: String): Coachmark {
+        var coachmark = Coachmark(contextInUse)
 
         coachmark.tagId = tagId
         coachmark.dismissOnTouch = dismissOnTouch
@@ -61,7 +59,7 @@ public class CoachMarkFactory(context: Context) {
         return coachmark;
     }
 
-    fun create(tagId: String, resourceId: Int): CoachMark {
+    fun create(tagId: String, resourceId: Int): Coachmark {
         var label = contextInUse.resources.getString( resourceId );
         return create( tagId, label )
     }

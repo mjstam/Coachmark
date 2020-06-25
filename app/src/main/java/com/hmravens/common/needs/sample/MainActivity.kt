@@ -7,8 +7,8 @@ import android.os.Bundle
 import android.util.AttributeSet
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.hmravens.coachmark.CoachMark
-import com.hmravens.coachmark.CoachMarkFactory
+import com.hmravens.coachmark.Coachmark
+import com.hmravens.coachmark.CoachmarkFactory
 import com.hmravens.coachmark.EnumOrientation
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -27,8 +27,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {
 
-        var factory: CoachMarkFactory =
-            CoachMarkFactory(this)
+        var factory: CoachmarkFactory =
+            CoachmarkFactory(this)
 
         factory.orientation = EnumOrientation.NORTH
         factory.textColor = Color.DKGRAY
@@ -39,9 +39,9 @@ class MainActivity : AppCompatActivity() {
         factory.borderSize = 4F
         factory.typeFace =  Typeface.create("Arial", Typeface.NORMAL )
         factory.dismissOnTouch = true
-        factory.microAdjustX = 100
 
-        var coachMark: CoachMark = factory.create( "one","Coachmark Baby!!!")
+
+        var coachMark: Coachmark = factory.create( "one","Coachmark Baby!!!")
 
         coachMark.associate( hello_world )
 
@@ -52,8 +52,9 @@ class MainActivity : AppCompatActivity() {
         factory.textColor = Color.WHITE
         factory.backgroundColor = Color.BLACK
         factory.borderColor = Color.BLACK
+        factory.microAdjustX = -100
 
-        var coachMark2: CoachMark = factory.create( "two","In the beginning\nThere was Nothing\nLife was without\nform and void.")
+        var coachMark2: Coachmark = factory.create( "two","In the beginning\nthere was nothing and\nlife was without\nform and void.")
 
         coachMark2.associate( hello_world )
 
@@ -67,8 +68,9 @@ class MainActivity : AppCompatActivity() {
         factory.backgroundColor = Color.LTGRAY
         factory.borderColor = Color.GRAY
         factory.dismissOnTouch = false;
+        factory.microAdjustX = 0
 
-        var coachMark3: CoachMark = factory.create( "three","SOUTHWEST!!!")
+        var coachMark3: Coachmark = factory.create( "three","SOUTHWEST!!!")
 
         coachMark3.associate( hello_world )
 
