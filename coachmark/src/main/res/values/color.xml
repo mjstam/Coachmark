@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+<color name="coachmark_default_text_color" >#EEEEEE</color>
+<color name="coachmark_default_background" >#333333</color>
+<color name="coachmark_default_border" >#999999</color>
+
+</resources>
