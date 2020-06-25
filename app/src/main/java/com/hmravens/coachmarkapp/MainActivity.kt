@@ -1,4 +1,4 @@
-package com.hmravens.common.needs.sample
+package com.hmravens.coachmarkapp
 
 import android.content.Context
 import android.graphics.Color
@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.hmravens.coachmark.Coachmark
 import com.hmravens.coachmark.CoachmarkFactory
 import com.hmravens.coachmark.EnumOrientation
-import kotlinx.android.synthetic.main.activity_main.*
+import com.hmravens.common.needs.sample.R
 
 class MainActivity : AppCompatActivity() {
 
@@ -43,9 +43,9 @@ class MainActivity : AppCompatActivity() {
 
         var coachMark: Coachmark = factory.create( "one","Coachmark Baby!!!")
 
-        coachMark.associate( hello_world )
+      //  coachMark.associate( hello_world )
 
-        coachMark.display()
+   //     coachMark.display()
 
         factory.orientation = EnumOrientation.SOUTHEAST
         factory.textSize = 44F
@@ -56,9 +56,9 @@ class MainActivity : AppCompatActivity() {
 
         var coachMark2: Coachmark = factory.create( "two","In the beginning\nthere was nothing and\nlife was without\nform and void.")
 
-        coachMark2.associate( hello_world )
+    //    coachMark2.associate( hello_world )
 
-        coachMark2.display()
+    //    coachMark2.display()
 
 
 
@@ -72,9 +72,9 @@ class MainActivity : AppCompatActivity() {
 
         var coachMark3: Coachmark = factory.create( "three","SOUTHWEST!!!")
 
-        coachMark3.associate( hello_world )
+      //  coachMark3.associate( hello_world )
 
-        coachMark3.display()
+     //   coachMark3.display()
 
 
     }
