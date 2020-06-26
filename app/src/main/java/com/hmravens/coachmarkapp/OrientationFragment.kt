@@ -1,19 +1,23 @@
 package com.hmravens.coachmarkapp
 
+import android.R.attr.fragment
 import android.content.Context
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.MeasureSpec
 import android.view.ViewGroup
+import androidx.core.view.doOnLayout
 import androidx.fragment.app.Fragment
 import com.hmravens.coachmark.Coachmark
 import com.hmravens.coachmark.CoachmarkFactory
-import com.hmravens.coachmark.CoachmarkOnClickCallback
 import com.hmravens.coachmark.EnumOrientation
 import com.hmravens.common.needs.sample.R
 import kotlinx.android.synthetic.main.fragment_orientation.*
+
 
 /**
  * Table of system font types for typeface
@@ -42,6 +46,7 @@ Carrois Gothic SC        | sans-serif-smallcaps        |
 class OrientationFragment: Fragment() {
 
     var coachmarks: MutableList<Coachmark> =  mutableListOf<Coachmark>()
+    val handler: Handler = Handler()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -52,22 +57,23 @@ class OrientationFragment: Fragment() {
          return inflater.inflate(R.layout.fragment_orientation, container, false)
     }
 
-    override fun onStart() {
-        super.onStart()
-        view!!.viewTreeObserver
-            .addOnWindowFocusChangeListener {
-               buildCoachmarks()
-            }
 
-         reset_coachmarks.setOnClickListener( View.OnClickListener { resetCoachmarks() })
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        reset_coachmarks.setOnClickListener( View.OnClickListener { resetCoachmarks() })
+        handler.postDelayed( Runnable { buildCoachmarks() }, 300 )
+
     }
 
 
 
 
 
+
+
    fun buildCoachmarks() {
-        super.onStart()
+
+
 
         val factory: CoachmarkFactory = CoachmarkFactory(this.context as Context)
 

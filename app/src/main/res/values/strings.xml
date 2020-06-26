@@ -17,4 +17,8 @@
     <string name="microadjust_button" >Cool New Feature</string>
     <string name="microadjust_coachmark" >Check it out</string>
 
+    <string name="multiline_example" >You can use \\n to create multiline coachmarks.</string>
+    <string name="multiline_button" >Best button ever!</string>
+    <string name="multipline_coachmark" >This is a lazy,\ngood for nothing Button.\nIt does nothing and\njust hangs out all day!!!</string>
+
 </resources>
