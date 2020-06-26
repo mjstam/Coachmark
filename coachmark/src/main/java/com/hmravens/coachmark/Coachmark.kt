@@ -248,7 +248,7 @@ class Coachmark : SurfaceView {
 
     private fun getPaintForText(): Paint {
         val paint = Paint()
-        paint.typeface = typeFaceCM
+
         paint.color = textColorCM
         paint.isAntiAlias = true
         paint.strokeWidth = 2f
@@ -261,6 +261,7 @@ class Coachmark : SurfaceView {
         paint.textSize = scaledSizeInPixels
         paint.style = Paint.Style.FILL_AND_STROKE
         paint.strokeJoin = Paint.Join.ROUND
+        paint.typeface = typeFaceCM
 
         return paint
     }
@@ -597,7 +598,7 @@ class Coachmark : SurfaceView {
 
         val widthText = rectText.width()
         val xPos = ((width - widthText) / 2)
-        var yPos = ((height - totalTextHeight) / 2) + rectText.height() - ( CONST_EXTRALINE_SPACING * valueList.size ) + CONST_EXTRALINE_SPACING
+        var yPos = ((height - totalTextHeight) / 2) + rectText.height() + 2 - ( CONST_EXTRALINE_SPACING * valueList.size ) + CONST_EXTRALINE_SPACING
 
         for ( lineOfText: String in valueList ) {
 
