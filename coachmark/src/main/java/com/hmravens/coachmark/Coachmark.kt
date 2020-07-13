@@ -56,6 +56,20 @@ class Coachmark : SurfaceView {
         setup()
     }
 
+    /**
+     * The Coachmark Display Handler keeps track of coachmark used with the
+     * use of shared preferences sourced by the coachmark id tag.
+     *
+     * Removes the coachmark id tag key from preferences so that it can be reused.
+     */
+    public fun reset() {
+        var prefs = context.getSharedPreferences(COACHMARK_PREFERENCE_GROUP, Context.MODE_PRIVATE)
+        if ( prefs.contains( tagId )) {
+            prefs.edit().remove(tagId).apply()
+        }
+
+    }
+
 
     private fun setup() {
 

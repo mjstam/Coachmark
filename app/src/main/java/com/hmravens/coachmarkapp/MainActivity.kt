@@ -51,12 +51,21 @@ class MainActivity : AppCompatActivity() {
                 transaction.commit()
             }
             else
+                if ( tab_control.selectedTabPosition == 1 )
+
             {
                 var multiFrag: MultilineFragment = MultilineFragment()
                 val transaction = supportFragmentManager.beginTransaction()
                 transaction.replace(R.id.fragment_holder, multiFrag )
                 transaction.commit()
             }
+            else
+                {
+                    var displayFrag: DisplayFunctionsFragment = DisplayFunctionsFragment()
+                    val transaction = supportFragmentManager.beginTransaction()
+                    transaction.replace(R.id.fragment_holder, displayFrag )
+                    transaction.commit()
+                }
         }
 
     }
