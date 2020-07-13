@@ -6,7 +6,6 @@ import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.SurfaceView
 import android.view.View
-import android.view.View.OnClickListener
 import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.core.content.ContextCompat
@@ -17,14 +16,14 @@ import com.hmravens.common.needs.R
  * This is the surface view for rendering the coach mark.
  */
 class Coachmark : SurfaceView {
-    val CONST_EXTRALINE_SPACING = 10;
+    val CONST_EXTRALINE_SPACING = 10
 
-    var callbacks: MutableList<CoachmarkOnClickCallback> =  mutableListOf<CoachmarkOnClickCallback>()
+    private var callbacks: MutableList<CoachmarkOnClickCallback> =  mutableListOf<CoachmarkOnClickCallback>()
 
     // These values are assigned by the Coachmark Factory and are not
     // assignable directly from the Coachmark class.
     internal var tagId = ""
-    internal var dismissOnTouch = true;
+    internal var dismissOnTouch = true
 
     internal var textColorCM: Int =
         ContextCompat.getColor(context, R.color.coachmark_default_text_color)
@@ -62,8 +61,8 @@ class Coachmark : SurfaceView {
      *
      * Removes the coachmark id tag key from preferences so that it can be reused.
      */
-    public fun reset() {
-        var prefs = context.getSharedPreferences(COACHMARK_PREFERENCE_GROUP, Context.MODE_PRIVATE)
+    fun reset() {
+        val prefs = context.getSharedPreferences(COACHMARK_PREFERENCE_GROUP, Context.MODE_PRIVATE)
         if ( prefs.contains( tagId )) {
             prefs.edit().remove(tagId).apply()
         }
@@ -102,7 +101,7 @@ class Coachmark : SurfaceView {
         this.visibility = GONE
 
         if ( dismissOnTouch ) {
-            this.setOnClickListener(OnClickListener { handleOnClickRequests() })
+            this.setOnClickListener({ handleOnClickRequests() })
         }
 
     }
@@ -111,7 +110,7 @@ class Coachmark : SurfaceView {
         callbacks.add( callback )
     }
 
-    fun handleOnClickRequests() {
+    private fun handleOnClickRequests() {
 
         for( callback in callbacks ) {
             callback.coachmarkClicked( tagId )
@@ -141,15 +140,15 @@ class Coachmark : SurfaceView {
         // Text Size
         val rectText = Rect()
 
-        var valueList =  textCM.split("\n").toTypedArray()
+        val valueList =  textCM.split("\n").toTypedArray()
 
         var longestValue = ""
         for( lineOfText:String in valueList ) {
             if ( lineOfText.length > longestValue.length ) {
-                longestValue = lineOfText;
+                longestValue = lineOfText
             }
         }
-        val textPaint = getPaintForText();
+        val textPaint = getPaintForText()
 
 
         textPaint.getTextBounds(longestValue, 0, longestValue.length, rectText)
@@ -172,7 +171,7 @@ class Coachmark : SurfaceView {
             context.resources.displayMetrics
         )
 
-        yIncrease = yIncrease  * valueList.size
+        yIncrease *= valueList.size
         val lp: ViewGroup.LayoutParams =
             ViewGroup.LayoutParams(xIncrease.toInt(), yIncrease.toInt())
 
@@ -555,11 +554,13 @@ class Coachmark : SurfaceView {
         val endOffset = width / 10
         val topOffset = height / 5
 
-        canvas.drawRoundRect(
-            endOffset,
+        val rectf = RectF(  endOffset,
             topOffset,
             width - endOffset,
-            height - topOffset,
+            height - topOffset)
+
+        canvas.drawRoundRect(
+            rectf,
             radiusSize,
             radiusSize,
             getBackgroundPaint()
@@ -575,11 +576,13 @@ class Coachmark : SurfaceView {
         val endOffset = width / 10
         val topOffset = height / 5
 
-        canvas.drawRoundRect(
-            endOffset,
+        val rectf = RectF(   endOffset,
             topOffset,
             width - endOffset,
-            height - topOffset,
+            height - topOffset)
+
+        canvas.drawRoundRect(
+             rectf,
             radiusSize,
             radiusSize,
             getBorderPaint()
@@ -599,11 +602,11 @@ class Coachmark : SurfaceView {
 
 
 
-        var valueList =  textCM.split("\n").toTypedArray()
+        val valueList =  textCM.split("\n").toTypedArray()
         var longestValue = ""
         for( lineOfText:String in valueList ) {
             if ( lineOfText.length > longestValue.length ) {
-                longestValue = lineOfText;
+                longestValue = lineOfText
             }
         }
         val rectText = Rect()
