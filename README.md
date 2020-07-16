@@ -13,12 +13,15 @@ created.
 
 1: You can override onWindowFocusChanged and implement your coachmark code there.
 2: You can use ViewTreeObserver and build your coachmark code when the fous changes
+'''code
      contentView.getViewTreeObserver().addOnWindowFocusChangeListener(
         new ViewTreeObserver.OnWindowFocusChangeListener() {
           @Override public void onWindowFocusChanged(boolean hasFocus) {
            
           }
         });
+'''
+        
 3: You can do a handler.postDelayed  ( This is a little cheesy but does work ok. It is used in the example app ). 
     handler.postDelayed( Runnable { buildCoachmarks() }, 300 )
 
