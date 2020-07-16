@@ -11,8 +11,9 @@ functions for controlling when the coachmarks are displayed.
 This library requires that the rendering of the UI be complete before the coachmark is 
 created. 
 
-1: You can override onWindowFocusChanged and implement your coachmark code there.
-2: You can use ViewTreeObserver and build your coachmark code when the fous changes
+1. You can override onWindowFocusChanged and implement your coachmark code there.
+
+2. You can use ViewTreeObserver and build your coachmark code when the fous changes
 
     contentView.getViewTreeObserver().addOnWindowFocusChangeListener(
         new ViewTreeObserver.OnWindowFocusChangeListener() {
@@ -24,18 +25,18 @@ created.
             
 
         
-3: You can do a handler.postDelayed  ( This is a little cheesy but does work ok. It is used in the example app ). 
+3. You can do a handler.postDelayed  ( This is a little cheesy but does work ok. It is used in the example app ). 
 
     handler.postDelayed( Runnable { buildCoachmarks() }, 300 )
 
-4: You could also try using the Androidx KTX extensions to determine when layout is complete.
+4. You could also try using the Androidx KTX extensions to determine when layout is complete.
 
-Why do you need to do this? 
+**Why do you need to do this?** 
+
 This library uses the position and size of individual components to determine how the coachmarks should be 
 sized and oriented. Prior to layout all these values are zero. When this is the case nothing gets displayed.
 
-ADDING THE LIBRARY TO YOUR PROJECT:
+# ADDING THE LIBRARY TO YOUR PROJECT:
 
-A SIMPLE EXAMPLE:
 
 
