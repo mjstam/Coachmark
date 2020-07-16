@@ -1,6 +1,6 @@
 # Coachmark
 This is a Kotlin library which can be used to add custom Coachmarks to you application.
-It requires a minimum SDK of 16.
+It requires a minimum SDK of **16**.
 
 The library included a sample application with exampled on how to create various types
 of Coackmarks. It also has examples of callback functions when the coachmark is touched and
@@ -13,16 +13,19 @@ created.
 
 1: You can override onWindowFocusChanged and implement your coachmark code there.
 2: You can use ViewTreeObserver and build your coachmark code when the fous changes
-'''code
-     contentView.getViewTreeObserver().addOnWindowFocusChangeListener(
+
+    contentView.getViewTreeObserver().addOnWindowFocusChangeListener(
         new ViewTreeObserver.OnWindowFocusChangeListener() {
-          @Override public void onWindowFocusChanged(boolean hasFocus) {
-           
-          }
+ 
+             @Override public void onWindowFocusChanged(boolean hasFocus) {  
+                 // Your coachmark code here
+             }
         });
-'''
+            
+
         
 3: You can do a handler.postDelayed  ( This is a little cheesy but does work ok. It is used in the example app ). 
+
     handler.postDelayed( Runnable { buildCoachmarks() }, 300 )
 
 4: You could also try using the Androidx KTX extensions to determine when layout is complete.
