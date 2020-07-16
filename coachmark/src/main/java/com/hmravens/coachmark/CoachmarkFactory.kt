@@ -6,36 +6,29 @@ import androidx.core.content.ContextCompat
 import com.hmravens.common.needs.R
 
 
-public class CoachmarkFactory(context: Context) {
-    val contextInUse: Context
+ class CoachmarkFactory(context: Context) {
+    private val contextInUse: Context = context
 
 
+     // Orientation of Coachmark relative to associated view.
+     var orientation: EnumOrientation = EnumOrientation.SOUTH
 
-    // Orientation of Coachmark relative to associated view.
-    public var orientation: EnumOrientation = EnumOrientation.SOUTH
+     var textColor: Int = ContextCompat.getColor(context, R.color.coachmark_default_text_color)
+     var backgroundColor: Int = ContextCompat.getColor(context, R.color.coachmark_default_background)
+     var borderColor: Int = ContextCompat.getColor(context, R.color.coachmark_default_border)
+     var textSize: Float = 30F
+     var radiusSize: Float = 15F
+     var borderSize: Float = 4F
+     var microAdjustX: Int = 0
+     var microAdjustY: Int = 0
 
-    public var textColor: Int = ContextCompat.getColor(context, R.color.coachmark_default_text_color);
-    public var backgroundColor: Int = ContextCompat.getColor(context, R.color.coachmark_default_background);
-    public var borderColor: Int = ContextCompat.getColor(context, R.color.coachmark_default_border);
-    public var textSize: Float = 30F
-    public var radiusSize: Float = 15F
-    public var borderSize: Float = 4F
-    public var microAdjustX: Int = 0
-    public var microAdjustY: Int = 0
+     var typeFace: Typeface = Typeface.create("Arial", Typeface.NORMAL )
 
-    public var typeFace: Typeface = Typeface.create("Arial", Typeface.NORMAL )
-
-    public var dismissOnTouch = true
-
+     var dismissOnTouch = true
 
 
-    init {
-        contextInUse = context
-    }
-
-
-    fun create(tagId: String, text: String): Coachmark {
-        var coachmark = Coachmark(contextInUse)
+     fun create(tagId: String, text: String): Coachmark {
+        val coachmark = Coachmark(contextInUse)
 
         coachmark.tagId = tagId
         coachmark.dismissOnTouch = dismissOnTouch
@@ -56,11 +49,11 @@ public class CoachmarkFactory(context: Context) {
 
         coachmark.calculateTheRequiredCoachmarkSize()
 
-        return coachmark;
+        return coachmark
     }
 
     fun create(tagId: String, resourceId: Int): Coachmark {
-        var label = contextInUse.resources.getString( resourceId );
+        val label = contextInUse.resources.getString( resourceId )
         return create( tagId, label )
     }
 

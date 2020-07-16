@@ -10,47 +10,47 @@ const val COACHMARK_PREFERENCE_GROUP = "Coachmarks"
 class CoachmarkDisplayHandler {
 
 
-    var handler: android.os.Handler = android.os.Handler()
+    private var handler: android.os.Handler = android.os.Handler()
 
-    fun displayForLimitedTime(context: Context, coachmark: Coachmark, displayInSeconds:Int ) {
+    fun displayForLimitedTime(coachmark: Coachmark, displayInSeconds:Int ) {
 
         coachmark.display()
 
         // Hide the coachmark after x seconds
-        handler.postDelayed( Runnable { coachmark.visibility = GONE }, ( displayInSeconds * 1000 ).toLong() )
+        handler.postDelayed({ coachmark.visibility = GONE }, ( displayInSeconds * 1000 ).toLong() )
 
     }
 
     fun displayOnce(context: Context, coachmark: Coachmark, displayInSeconds:Int ) {
 
-        var prefs = context.getSharedPreferences(COACHMARK_PREFERENCE_GROUP, Context.MODE_PRIVATE )
+        val prefs = context.getSharedPreferences(COACHMARK_PREFERENCE_GROUP, Context.MODE_PRIVATE )
 
         // Already recorded don't show
         if ( prefs.contains(coachmark.tagId) ) {
-            return;
+            return
         }
 
         // Record that it was displayed
-        prefs.edit().putString( coachmark.tagId, "used" ).apply() ;
+        prefs.edit().putString( coachmark.tagId, "used" ).apply()
 
-        displayForLimitedTime( context, coachmark, displayInSeconds )
+        displayForLimitedTime( coachmark, displayInSeconds )
 
     }
 
 
     fun displayOnVersionChange( context: Context,coachmark: Coachmark , displayInSeconds: Int ) {
-        var prefs = context.getSharedPreferences(COACHMARK_PREFERENCE_GROUP, Context.MODE_PRIVATE )
+        val prefs = context.getSharedPreferences(COACHMARK_PREFERENCE_GROUP, Context.MODE_PRIVATE )
 
 
         val versionCurrent = prefs.getString(coachmark.tagId, "")
 
         try {
             val pInfo: PackageInfo =
-                context.packageManager.getPackageInfo(context.getPackageName(), 0)
+                context.packageManager.getPackageInfo(context.packageName, 0)
             val version = pInfo.versionName
 
             if ( versionCurrent.equals(version)) {
-                return;
+                return
             }
 
             prefs.edit().putString(coachmark.tagId, version).apply()
@@ -59,7 +59,7 @@ class CoachmarkDisplayHandler {
             e.printStackTrace()
         }
 
-        displayForLimitedTime( context, coachmark, displayInSeconds )
+        displayForLimitedTime(coachmark, displayInSeconds )
     }
 
 

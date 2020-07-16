@@ -17,7 +17,7 @@
     <string name="microadjust_button" >Cool New Feature</string>
     <string name="microadjust_coachmark" >Check it out</string>
 
-    <string name="multiline_example" >You can use \\n to create multiline coachmarks.</string>
+    <string name="multiline_example" >You can use \\n to create multiline coachmarks. Tap the coachmark to see a callback invoked when the message is touched.</string>
     <string name="multiline_button" >Best button ever!</string>
     <string name="multipline_coachmark" >This is a lazy,\ngood for nothing Button.\nIt does nothing and\njust hangs out all day!!!</string>
     <string name="display_options">Display Options</string>
@@ -27,5 +27,7 @@
     <string name="display_ten_seconds" >Display for 5 seconds</string>
     <string name="display_once_for_ten_seconds" >Display Once for 5 Seconds (click to reset)</string>
     <string name="display_on_version_change" >Display When Version Changes</string>
+
+    <string name="callback_example" >Hey, Hey , Hey I am a callback, you touched the multiline message.</string>
 
 </resources>

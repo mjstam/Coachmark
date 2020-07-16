@@ -1,7 +1,6 @@
 package com.hmravens.coachmarkapp
 
 import android.content.Context
-import android.content.res.Configuration
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
@@ -9,7 +8,7 @@ import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.hmravens.coachmark.Coachmark
 import com.hmravens.coachmark.CoachmarkFactory
@@ -17,7 +16,6 @@ import com.hmravens.coachmark.CoachmarkOnClickCallback
 import com.hmravens.coachmark.EnumOrientation
 import com.hmravens.common.needs.sample.R
 import kotlinx.android.synthetic.main.fragment_multiline.*
-import kotlinx.android.synthetic.main.fragment_orientation.*
 
 
 class MultilineFragment: Fragment() {
@@ -56,12 +54,23 @@ class MultilineFragment: Fragment() {
        factory.dismissOnTouch = false
        factory.microAdjustX = 200
 
+
+
        val multicoach: Coachmark = factory.create("Multiline", R.string.multipline_coachmark)
 
+       multicoach.addCallback { callbackForButton() }
        multicoach.associate(lazy_button)
        multicoach.display()
 
    }
+
+    private fun callbackForButton() {
+        val dialogBuilder = AlertDialog.Builder(context!!)
+        dialogBuilder.setMessage(R.string.callback_example)
+        dialogBuilder.setCancelable(true)
+
+        dialogBuilder.show()
+    }
 
 
 

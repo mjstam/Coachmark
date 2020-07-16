@@ -16,9 +16,9 @@ import com.hmravens.common.needs.R
  * This is the surface view for rendering the coach mark.
  */
 class Coachmark : SurfaceView {
-    val CONST_EXTRALINE_SPACING = 10
+    private val CONST_EXTRALINE_SPACING = 10
 
-    private var callbacks: MutableList<CoachmarkOnClickCallback> =  mutableListOf<CoachmarkOnClickCallback>()
+    private var callbacks: MutableList<() -> Unit> =  mutableListOf()
 
     // These values are assigned by the Coachmark Factory and are not
     // assignable directly from the Coachmark class.
@@ -100,20 +100,20 @@ class Coachmark : SurfaceView {
         this.bringToFront()
         this.visibility = GONE
 
-        if ( dismissOnTouch ) {
-            this.setOnClickListener({ handleOnClickRequests() })
+        if ( dismissOnTouch || callbacks.size > 0 ) {
+            this.setOnClickListener { handleOnClickRequests() }
         }
 
     }
 
-    fun addCallback( callback: CoachmarkOnClickCallback ) {
+    fun addCallback(callback:() -> Unit) {
         callbacks.add( callback )
     }
 
     private fun handleOnClickRequests() {
 
         for( callback in callbacks ) {
-            callback.coachmarkClicked( tagId )
+            callback.invoke()
         }
 
         if ( dismissOnTouch ) {
