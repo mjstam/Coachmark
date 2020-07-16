@@ -13,7 +13,7 @@ created.
 
 1, You can override onWindowFocusChanged and implement your coachmark code there.
 
-2, You can use ViewTreeObserver and build your coachmark code when the fous changes
+2, You can use ViewTreeObserver and build your coachmark code when the focus changes
 
     contentView.getViewTreeObserver().addOnWindowFocusChangeListener(
         new ViewTreeObserver.OnWindowFocusChangeListener() {
