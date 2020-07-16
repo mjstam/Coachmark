@@ -35,7 +35,8 @@ created.
 **Why do you need to do this?** 
 
 This library uses the position and size of individual components to determine how the coachmarks should be 
-sized and oriented. Prior to layout all these values are zero. When this is the case nothing gets displayed.
+sized and oriented. Prior to layout all these values are zero. If called before layout is complete nothing gets
+displayed.
 
 **Adding the library to your project**
 
