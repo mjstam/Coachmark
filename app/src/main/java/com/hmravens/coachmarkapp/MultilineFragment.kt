@@ -12,7 +12,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.hmravens.coachmark.Coachmark
 import com.hmravens.coachmark.CoachmarkFactory
-import com.hmravens.coachmark.CoachmarkOnClickCallback
 import com.hmravens.coachmark.EnumOrientation
 import com.hmravens.common.needs.sample.R
 import kotlinx.android.synthetic.main.fragment_multiline.*
