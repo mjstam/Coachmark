@@ -6,7 +6,7 @@ The library included a sample application with exampled on how to create various
 of Coackmarks. It also has examples of callback functions when the coachmark is touched and
 functions for controlling when the coachmarks are displayed.
 
-IMPORTANT:
+# Important
 
 This library requires that the rendering of the UI be complete before the coachmark is 
 created. 
