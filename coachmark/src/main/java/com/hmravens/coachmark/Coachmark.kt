@@ -17,6 +17,7 @@ import com.hmravens.common.needs.R
  */
 class Coachmark : SurfaceView {
     private val CONST_EXTRALINE_SPACING = 10
+    private val CONST_PADDING = 20
 
     private var callbacks: MutableList<() -> Unit> =  mutableListOf()
 
@@ -160,7 +161,7 @@ class Coachmark : SurfaceView {
             TypedValue.COMPLEX_UNIT_DIP,
             width.toFloat(),
             context.resources.displayMetrics
-        )
+        ) + CONST_PADDING
 
 
         // Size of control
@@ -169,11 +170,11 @@ class Coachmark : SurfaceView {
             TypedValue.COMPLEX_UNIT_DIP,
             height,
             context.resources.displayMetrics
-        )
+        ) + CONST_PADDING
 
         yIncrease *= valueList.size
         val lp: ViewGroup.LayoutParams =
-            ViewGroup.LayoutParams(xIncrease.toInt(), yIncrease.toInt())
+            ViewGroup.LayoutParams(xIncrease.toInt() , yIncrease.toInt() )
 
         this.layoutParams = lp
 
