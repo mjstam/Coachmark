@@ -1,6 +1,5 @@
 package com.hmravens.coachmarkapp
 
-import android.R.attr.fragment
 import android.content.Context
 import android.graphics.Color
 import android.graphics.Typeface
@@ -8,9 +7,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.MeasureSpec
 import android.view.ViewGroup
-import androidx.core.view.doOnLayout
 import androidx.fragment.app.Fragment
 import com.hmravens.coachmark.Coachmark
 import com.hmravens.coachmark.CoachmarkFactory
