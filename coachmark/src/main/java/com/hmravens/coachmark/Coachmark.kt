@@ -291,6 +291,18 @@ class Coachmark : SurfaceView {
         return paint
     }
 
+
+    private fun getBackgroundTongue(): Paint {
+        val paint = Paint()
+        paint.color =Color.RED
+        paint.isAntiAlias = true
+        paint.strokeWidth = 4f
+        paint.style = Paint.Style.FILL_AND_STROKE
+        paint.strokeJoin = Paint.Join.ROUND
+
+        return paint
+    }
+
     private fun getBorderPaint(): Paint {
         val paint = Paint()
         paint.color = borderColorCM
@@ -340,8 +352,8 @@ class Coachmark : SurfaceView {
 
                 path.moveTo(halfWidth  , height - 2  )
 
-                path.lineTo(halfWidth - halfOffset  , height - topOffset  )
-                path.lineTo(halfWidth + halfOffset  , height - topOffset  )
+                path.lineTo(halfWidth - halfOffset  , height - topOffset - borderSize )
+                path.lineTo(halfWidth + halfOffset  , height - topOffset - borderSize )
                 path.lineTo(halfWidth  , height - 2  )
                 path.close()
 
@@ -439,8 +451,8 @@ class Coachmark : SurfaceView {
 
                 path.moveTo(halfWidth  , 2F  )
 
-                path.lineTo(halfWidth - halfOffset  , topOffset  )
-                path.lineTo(halfWidth + halfOffset  , topOffset  )
+                path.lineTo(halfWidth - halfOffset  , topOffset + borderSize )
+                path.lineTo(halfWidth + halfOffset , topOffset + borderSize )
                 path.lineTo(halfWidth  , 2F  )
                 path.close()
 
