@@ -43,5 +43,21 @@ displayed (because all sizes and positions are reported as 0 ).
 
 **Adding the library to your project**
 
+	allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+    
+    dependencies {
+	        implementation 'com.github.mjstam:Coachmark:Tag'
+	}
+    
+    Note: Tag needs to be changed to the version you are using ( i.e 1.0 )
+    
+    
+    
+
 
 
