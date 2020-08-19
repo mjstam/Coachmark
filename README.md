@@ -2,8 +2,8 @@
 This is a Kotlin library which can be used to add custom Coachmarks to you application.
 It requires a minimum SDK of **16**.
 
-The library included a sample application with exampled on how to create various types
-of Coackmarks. It also has examples of callback functions when the coachmark is touched and
+The library includes a sample application with examples on how to create various types
+of Coackmarks. It also has examples of callback functions invoked when the coachmark is touched and
 functions for controlling when the coachmarks are displayed.
 
 # Important
@@ -29,7 +29,8 @@ created.
 
     handler.postDelayed( Runnable { buildCoachmarks() }, 300 )
 
-4, You could also try using the Androidx KTX extensions to determine when layout is complete.
+4, You could also try using the Androidx KTX extensions to determine when layout is complete. I have not verified
+   that this works, but it should :)
 
 
 **Why do you need to wait until the UI is rendered?** 
