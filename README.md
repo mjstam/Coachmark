@@ -32,11 +32,11 @@ created.
 4, You could also try using the Androidx KTX extensions to determine when layout is complete.
 
 
-**Why do you need to do this?** 
+**Why do you need to wait until the UI is rendered?** 
 
 This library uses the position and size of individual components to determine how the coachmarks should be 
 sized and oriented. Prior to layout all these values are zero. If called before layout is complete nothing gets
-displayed.
+displayed (because all sizes and positions are reported as 0 ).
 
 **Adding the library to your project**
 
