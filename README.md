@@ -6,6 +6,8 @@ The library includes a sample application with examples on how to create various
 of Coackmarks. It also has examples of callback functions invoked when the coachmark is touched and
 functions for controlling when the coachmarks are displayed.
 
+![Image of Saimple App Main Page](http://hmravens.com/coachmark/coachmark_main.png)
+
 # Important
 
 This library requires that the rendering of the UI be complete before the coachmark is 
