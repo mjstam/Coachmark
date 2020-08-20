@@ -200,7 +200,7 @@ class Coachmark : SurfaceView {
             EnumOrientation.NORTH -> {
                 val offset = this.layoutParams.height + 10
                 val total = offsetViewBounds.top - offset
-                val center = offsetViewBounds.centerX() - (this.layoutParams.width / 2)
+                val center = (group.width / 2) - (accociation.width / 2) + (CONST_PADDING * 2 )
                 positionY = total.toFloat()
                 positionX = center.toFloat()
             }
@@ -224,7 +224,7 @@ class Coachmark : SurfaceView {
             EnumOrientation.SOUTH -> {
                 val offset = this.height + 10
                 val total = offsetViewBounds.bottom + offset
-                val center = offsetViewBounds.centerX() - (this.layoutParams.width / 2)
+                val center = (group.width / 2) - (accociation.width / 2) + (CONST_PADDING * 2 )
                 positionY = total.toFloat()
                 positionX = center.toFloat()
             }
@@ -431,8 +431,8 @@ class Coachmark : SurfaceView {
 
                 path.moveTo(0F  , 0F  )
 
-                path.lineTo(endOffset  , topOffset + radiusSize  )
-                path.lineTo(endOffset  , height - (topOffset + radiusSize + 2)  )
+                path.lineTo(endOffset  , topOffset + borderSize  )
+                path.lineTo(endOffset  , height - (topOffset + borderSize + 2)  )
                 path.lineTo(0F  , 0F  )
                 path.close()
 
@@ -445,6 +445,11 @@ class Coachmark : SurfaceView {
                     height - (topOffset + radiusSize + 1)  ,
                     getBorderPaint()
                 )
+
+
+
+
+
             }
             EnumOrientation.SOUTH -> {
                 val path = Path()
@@ -471,14 +476,15 @@ class Coachmark : SurfaceView {
                     topOffset + 1  ,
                     getBorderPaint()
                 )
+
             }
             EnumOrientation.SOUTHWEST -> {
                 val path = Path()
 
                 path.moveTo(width  , 0F  )
 
-                path.lineTo(width - (endOffset + 1)  , topOffset + radiusSize  )
-                path.lineTo(width - (endOffset + 1)  , height - (topOffset + radiusSize + 2)  )
+                path.lineTo(width - (endOffset + 2 )  , topOffset + borderSize + 2 )
+                path.lineTo(width - (endOffset + borderSize)  , height - (topOffset + radiusSize )  )
                 path.lineTo(width  , 0F  )
                 path.close()
 
@@ -486,15 +492,15 @@ class Coachmark : SurfaceView {
                 canvas.drawLine(
                     width  ,
                     0F  ,
-                    width - (endOffset + 1)  ,
-                    topOffset + radiusSize + 1  ,
+                    width - (endOffset + borderSize - 2)  ,
+                    topOffset + (borderSize + 2)   ,
                     getBorderPaint()
                 )
                 canvas.drawLine(
                     width  ,
                     0F  ,
-                    width - (endOffset + 1)  ,
-                    height - (topOffset + radiusSize + 2)   ,
+                    width - (endOffset )  ,
+                    height - (topOffset + radiusSize )   ,
                     getBorderPaint()
                 )
 

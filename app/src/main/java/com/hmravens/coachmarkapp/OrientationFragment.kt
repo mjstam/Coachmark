@@ -115,7 +115,7 @@ class OrientationFragment: Fragment() {
 
        factory.orientation = EnumOrientation.SOUTHEAST
        factory.textSize = 18F
-       factory.radiusSize = 4F
+       factory.radiusSize = 6F
        factory.backgroundColor = Color.DKGRAY
        factory.borderColor = Color.BLACK
        factory.typeFace =  Typeface.create("serif", Typeface.ITALIC)
