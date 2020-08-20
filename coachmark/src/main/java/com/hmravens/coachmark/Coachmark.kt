@@ -405,8 +405,8 @@ class Coachmark : SurfaceView {
 
                 path.moveTo(0F  , (height / 2F)  )
 
-                path.lineTo(endOffset  , topOffset + radiusSize + 3  )
-                path.lineTo(endOffset  , height - (topOffset + radiusSize + 3)  )
+                path.lineTo(endOffset + borderSize , topOffset + radiusSize + 3  )
+                path.lineTo(endOffset  + borderSize, height - (topOffset + radiusSize + 3)  )
                 path.lineTo(0F  , (height / 2F)  )
                 path.close()
 
@@ -431,18 +431,22 @@ class Coachmark : SurfaceView {
 
                 path.moveTo(0F  , 0F  )
 
-                path.lineTo(endOffset  , topOffset + borderSize  )
-                path.lineTo(endOffset  , height - (topOffset + borderSize + 2)  )
+                path.lineTo(endOffset + borderSize , topOffset + borderSize  )
+                path.lineTo(endOffset + borderSize , height - (topOffset + borderSize + 2)  )
                 path.lineTo(0F  , 0F  )
                 path.close()
 
                 canvas.drawPath(path, getBackgroundPaint())
-                canvas.drawLine(0F  , 0F  , endOffset  , topOffset + radiusSize  , getBorderPaint())
+                canvas.drawLine(0F  ,
+                                       0F  ,
+                                       endOffset + borderSize + 2,
+                                topOffset + borderSize - 2  ,
+                                       getBorderPaint())
                 canvas.drawLine(
                     0F  ,
                     0F  ,
-                    endOffset + 1  ,
-                    height - (topOffset + radiusSize + 1)  ,
+                    endOffset + borderSize + 2 ,
+                    height - (topOffset + borderSize - 2)  ,
                     getBorderPaint()
                 )
 
@@ -511,8 +515,8 @@ class Coachmark : SurfaceView {
 
                 path.moveTo(width  , (height / 2F)  )
 
-                path.lineTo(width - (endOffset + 1) , topOffset + radiusSize + 3 )
-                path.lineTo(width - (endOffset + 1) , height - (topOffset + radiusSize + 3))
+                path.lineTo(width - (endOffset + borderSize) , topOffset + radiusSize + 3 )
+                path.lineTo(width - (endOffset + borderSize) , height - (topOffset + radiusSize + 3))
                 path.lineTo(width, height / 2F)
                 path.close()
 
