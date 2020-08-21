@@ -16,8 +16,8 @@ import com.hmravens.common.needs.R
  * This is the surface view for rendering the coach mark.
  */
 class Coachmark : SurfaceView {
-    private val CONST_EXTRALINE_SPACING = 10
-    private val CONST_PADDING = 20
+
+    private val CONST_PADDING = 10
 
     private var callbacks: MutableList<() -> Unit> =  mutableListOf()
 
@@ -130,14 +130,45 @@ class Coachmark : SurfaceView {
     }
 
 
+    /**
+     * Calculate how big the entire control ( coachmark ) needs to be
+     *  Padding + border + margin + text + spacing between text lines
+     */
     internal fun calculateTheRequiredCoachmarkSize() {
 
 
-        val wm = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
-        val display = wm.defaultDisplay
-        val point = Point()
-        display.getSize(point)
 
+        val heightSingleLineOfText = singleTextHeight()
+        val rectLongest = rectOfLongestLine()
+        val spaceBetweenLines = lineSpacing()
+        val linesOfText =  textCM.split("\n").toTypedArray()
+
+        // Spacing above/below and between text lines
+        val spacingRequired = ( spaceBetweenLines * linesOfText.size ) + spaceBetweenLines
+
+        // Total text height
+        val spacing = spaceBetweenLines * linesOfText.size + spaceBetweenLines;
+        val textSpaceRequired = linesOfText.size * heightSingleLineOfText + spacing;
+
+
+        val outsideBorder = heightSingleLineOfText + spaceBetweenLines
+
+        val totalHeight = textSpaceRequired + borderSize + outsideBorder
+
+        val totalWidth = rectLongest.width() + (heightSingleLineOfText * 2 ) + borderSize + outsideBorder + CONST_PADDING
+
+
+
+
+        val lp: ViewGroup.LayoutParams =
+            ViewGroup.LayoutParams(totalWidth.toInt() , totalHeight.toInt() )
+
+        this.layoutParams = lp
+
+    }
+
+
+    private fun singleTextHeight():Float {
         // Text Size
         val rectText = Rect()
 
@@ -154,36 +185,38 @@ class Coachmark : SurfaceView {
 
         textPaint.getTextBounds(longestValue, 0, longestValue.length, rectText)
         val fm: Paint.FontMetrics = textPaint.fontMetrics
-        val height = (fm.descent - fm.ascent) + ( (CONST_EXTRALINE_SPACING * valueList.size) - CONST_EXTRALINE_SPACING )
-        val width = rectText.width()
-
-        val xIncrease = TypedValue.applyDimension(
-            TypedValue.COMPLEX_UNIT_DIP,
-            width.toFloat(),
-            context.resources.displayMetrics
-        ) + CONST_PADDING
-
-
-        // Size of control
-
-        var yIncrease =  TypedValue.applyDimension(
-            TypedValue.COMPLEX_UNIT_DIP,
-            height,
-            context.resources.displayMetrics
-        ) + CONST_PADDING
-
-        yIncrease *= valueList.size
-        val lp: ViewGroup.LayoutParams =
-            ViewGroup.LayoutParams(xIncrease.toInt() , yIncrease.toInt() )
-
-        this.layoutParams = lp
-
+        val height = (fm.top - fm.bottom)
+        return Math.abs(height)
     }
 
+    private fun lineSpacing(): Float {
+        var leading = getPaintForText().fontMetrics.leading
+
+        if ( leading == 0f ) {
+            leading = ( rectOfLongestLine().height() / 6f)
+        }
+
+        return  leading
+    }
+
+    private fun rectOfLongestLine():Rect {
+
+        val rectText = Rect()
+
+        val valueList =  textCM.split("\n").toTypedArray()
+
+        var longestValue = ""
+        for( lineOfText:String in valueList ) {
+            if ( lineOfText.length > longestValue.length ) {
+                longestValue = lineOfText
+            }
+        }
+        val textPaint = getPaintForText()
 
 
-
-
+        textPaint.getTextBounds(longestValue, 0, longestValue.length, rectText)
+        return rectText
+    }
 
 
     private fun positionByOrientation(group: ViewGroup, accociation: View) {
@@ -200,7 +233,7 @@ class Coachmark : SurfaceView {
             EnumOrientation.NORTH -> {
                 val offset = this.layoutParams.height + 10
                 val total = offsetViewBounds.top - offset
-                val center = (group.width / 2) - (accociation.width / 2) + (CONST_PADDING * 2 )
+                val center = (group.width / 2) - (accociation.width / 2)
                 positionY = total.toFloat()
                 positionX = center.toFloat()
             }
@@ -224,7 +257,7 @@ class Coachmark : SurfaceView {
             EnumOrientation.SOUTH -> {
                 val offset = this.height + 10
                 val total = offsetViewBounds.bottom + offset
-                val center = (group.width / 2) - (accociation.width / 2) + (CONST_PADDING * 2 )
+                val center = (group.width / 2) - (accociation.width / 2)
                 positionY = total.toFloat()
                 positionX = center.toFloat()
             }
@@ -337,7 +370,7 @@ class Coachmark : SurfaceView {
         val halfWidth = width / 2
         val endOffset = width / 10
         val halfOffset = endOffset / 2
-        val topOffset = height / 5
+        val topOffset = height / 7
 
         val rectText = Rect()
         getPaintForText().getTextBounds(textCM, 0, textCM.length, rectText)
@@ -575,7 +608,7 @@ class Coachmark : SurfaceView {
         val height = canvas.height.toFloat()
         val width = canvas.width.toFloat()
         val endOffset = width / 10
-        val topOffset = height / 5
+        val topOffset = height / 7
 
         val rectf = RectF(  endOffset,
             topOffset,
@@ -597,7 +630,7 @@ class Coachmark : SurfaceView {
         val height = canvas.height.toFloat()
         val width = canvas.width.toFloat()
         val endOffset = width / 10
-        val topOffset = height / 5
+        val topOffset = height / 7
 
         val rectf = RectF(   endOffset,
             topOffset,
@@ -620,30 +653,27 @@ class Coachmark : SurfaceView {
             return
         }
 
-        val height = canvas.height.toFloat()
         val width = canvas.width.toFloat()
 
+        val rectLongest = rectOfLongestLine()
+        val heightSingleLineOfText = singleTextHeight()
+        val spaceBetweenLines = lineSpacing()
+        val linesOfText =  textCM.split("\n").toTypedArray()
 
 
-        val valueList =  textCM.split("\n").toTypedArray()
-        var longestValue = ""
-        for( lineOfText:String in valueList ) {
-            if ( lineOfText.length > longestValue.length ) {
-                longestValue = lineOfText
-            }
-        }
-        val rectText = Rect()
-        getPaintForText().getTextBounds(longestValue, 0, longestValue.length, rectText)
-        val totalTextHeight = valueList.size * ( rectText.height() + CONST_EXTRALINE_SPACING )
 
-        val widthText = rectText.width()
+
+        var yPos = heightSingleLineOfText + spaceBetweenLines + borderSize + CONST_PADDING
+
+
+
+        val widthText = rectLongest.width()
         val xPos = ((width - widthText) / 2)
-        var yPos = ((height - totalTextHeight) / 2) + rectText.height() + 2 - ( CONST_EXTRALINE_SPACING * valueList.size ) + CONST_EXTRALINE_SPACING
 
-        for ( lineOfText: String in valueList ) {
+        for ( lineOfText: String in linesOfText ) {
 
             canvas.drawText(lineOfText, xPos, yPos, getPaintForText())
-            yPos += rectText.height() + CONST_EXTRALINE_SPACING
+            yPos += (heightSingleLineOfText)
         }
 
     }

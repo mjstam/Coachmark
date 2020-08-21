@@ -42,7 +42,7 @@ class MultilineFragment: Fragment() {
 
        val factory: CoachmarkFactory = CoachmarkFactory(this.context as Context)
 
-       factory.orientation = EnumOrientation.SOUTHWEST
+       factory.orientation = EnumOrientation.SOUTH
        factory.textColor = Color.WHITE
        factory.backgroundColor = Color.DKGRAY
        factory.borderColor = Color.parseColor("#888888")
@@ -51,7 +51,7 @@ class MultilineFragment: Fragment() {
        factory.borderSize = 6F
        factory.typeFace = Typeface.create("sans-serif-thin", Typeface.NORMAL)
        factory.dismissOnTouch = false
-       factory.microAdjustX = 200
+
 
 
 

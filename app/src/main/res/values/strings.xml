@@ -19,7 +19,7 @@
 
     <string name="multiline_example" >You can use \\n to create multiline coachmarks. Tap the coachmark to see a callback invoked when the message is touched.</string>
     <string name="multiline_button" >Best button ever!</string>
-    <string name="multipline_coachmark" >This is a lazy,\ngood for nothing Button.\nIt does nothing and\njust hangs out all day!!!</string>
+    <string name="multipline_coachmark" >\nThis is a lazy,\ngood for nothing Button.\nIt does nothing and\njust hangs out all day!!!\n</string>
     <string name="display_options">Display Options</string>
 
     <string name="display_options_desc" >Use CoachmarkDisplayHandler to display a coachmark under a variety of conditions and/or for a limited amount of time ( flip tabs back and forth to see the difference in behavior ).</string>
